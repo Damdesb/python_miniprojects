@@ -1,0 +1,50 @@
+from random import randint
+
+list_of_play_option = ["Scissors", "Rock", "Paper"]
+
+#get a number from a user
+def print_hand_user(hand):
+    print("your hand is: ", list_of_play_option[hand])
+
+#random number generated for the computer's hand
+def print_hand_computer(hand):
+        print("computer's hand is:", list_of_play_option[hand])
+
+#determine winner by establishing rules
+def determine_winner(player, computer):
+    player_hand = list_of_play_option[player]
+    computer_hand = list_of_play_option[computer]
+
+    if player_hand == computer_hand:
+        print('this is a tie')
+    elif player_hand == "Rock":
+        if computer_hand == "Paper":
+            print("You lose!", computer_hand, "covers", player_hand)
+        else:
+            print("You win!", player_hand, "smashes", computer_hand)
+    elif player_hand == "Paper":
+        if computer_hand == "Scissors":
+            print("You lose!", computer_hand, "cut", player_hand)
+        else:
+            print("You win!", player_hand, "covers", computer_hand)
+    elif player_hand == "Scissors":
+        if computer_hand == "Rock":
+            print("You lose...", computer_hand, "smashes", player_hand)
+        else:
+            print("You win!", player_hand, "cut", computer_hand)
+    print("enter 'exit' to stop the game")
+
+
+player_continue = True
+while player_continue:
+    player_hand = int(input("0 = scissors, 1 = rock, 2 = paper - select your hand: "))
+    if player_hand > 2:
+        print("wrong number!")
+        break
+    else:
+        print_hand_user(player_hand)
+    computer_hand = randint(0,2)
+    print_hand_computer(computer_hand)
+    determine_winner(player_hand, computer_hand)
+print('thank you for using this program')
+
